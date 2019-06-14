@@ -2,7 +2,7 @@ package ru.geekbrain.HW.HW2;
 
 public class Main {
 
-    public static final int SIZE = 100000;
+    public static final int SIZE = 1000000;
     public static final int SIZE1 = 10;
     public static final int X = 1000000000;
 
