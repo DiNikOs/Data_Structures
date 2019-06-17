@@ -11,7 +11,7 @@ public class ArrayMethods <E extends Object & Comparable<? super E>> implements 
     protected E[] data;
     protected int size;
     Array<E> array2;
-    Array<Integer> arrayRnd;
+    Array<Integer> array;
 
     public ArrayMethods() {
         this(INITIAL_CAPACITY);
@@ -79,6 +79,7 @@ public class ArrayMethods <E extends Object & Comparable<? super E>> implements 
     public int indexOf(E value) {
         for (int i = 0; i < size; i++) {
             if (data[i].equals(value)) {
+                System.out.println("element find= " + i);
                 return i;
             }
         }
@@ -87,12 +88,13 @@ public class ArrayMethods <E extends Object & Comparable<? super E>> implements 
     }
 
     @Override//O(logN)
-    public int indexOfBinaty(E value) {
+    public int indexOfBinary(E value) {
         int low = 0;
         int high = size - 1;
 
         while (low <= high) {
             int mid = (low + high) / 2;
+            System.out.println("mid= " + mid);
             if ( data[mid].equals(value) ) {
                 return mid;
             }
@@ -171,7 +173,16 @@ public class ArrayMethods <E extends Object & Comparable<? super E>> implements 
     }
 
     @Override
-    public Array<E> clone(Array<E> arr) {
+    public Array<Integer> sortInsertInt(Array<Integer> arr) {
+        array = new ArrayMethods<>(arr.size());
+        for (int i = 0; i < arr.size(); i++) {
+            array.add(i+1);
+        }
+        return array;
+    }
+
+    @Override
+    public Array<E> copy(Array<E> arr) {
         array2 = new ArrayMethods<>(arr.size());
         for (int i = 0; i < arr.size(); i++) {
             array2.add((arr.get(i)));
@@ -181,12 +192,20 @@ public class ArrayMethods <E extends Object & Comparable<? super E>> implements 
 
     @Override
     public Array<Integer> fillRnd(int len) {
-        arrayRnd = new ArrayMethods<>(len);
+        int arr[] = new int [len];
+        array = new ArrayMethods<>(len);
         System.out.println("\n" + "arrSize= " + len);
-        for (int i = 0; i <len ; i++) {
-            arrayRnd.add((int)(len*random()));
+        int j;
+        int a = 0;
+        while (a != len) {
+            j = (int)(len*random());
+            if (arr[j] == 0) {
+                array.add(j + 1);
+                arr[j] = 1;
+                a++;
+            }
         }
-        return arrayRnd;
+        return array;
     }
 
 }

@@ -13,7 +13,7 @@ public interface Array<E> {
     }
 
     int indexOf(E value);
-    int indexOfBinaty(E value);
+    int indexOfBinary(E value);
 
     int size();
     boolean isEmpty();
@@ -23,7 +23,8 @@ public interface Array<E> {
     void sortBubble();
     void sortSelect();
     void sortInsert();
+    Array<Integer> sortInsertInt (Array<Integer> arr);
 
-    Array<E> clone (Array<E> arr);
+    Array<E> copy (Array<E> arr);
     Array<Integer> fillRnd (int len);
 }
