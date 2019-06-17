@@ -17,7 +17,6 @@ public class ArrayMethods <E extends Object & Comparable<? super E>> implements 
         this(INITIAL_CAPACITY);
     }
 
-
     @SuppressWarnings("unchecked")
     public ArrayMethods(int initialCapacity) {
         this.data = (E[]) new Object[initialCapacity];

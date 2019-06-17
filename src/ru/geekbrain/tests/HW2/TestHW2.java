@@ -7,7 +7,6 @@ public class TestHW2 <E extends Object & Comparable<? super E>> implements Array
 
     Array<E> array;
     private static Array<Integer> array2;
-
     public static final int X = 1000000000;
 
     public TestHW2(Array<E> array) {
@@ -42,11 +41,9 @@ public class TestHW2 <E extends Object & Comparable<? super E>> implements Array
         switch (s) {
             case ("find"):
                 if (array.indexOf(i)>0) System.out.println(" true");
-                array.display();
                 break;
             case ("findSort"):
                 if (array2.indexOf(i)>0) System.out.println(" true");
-                array2.display();
                 break;
             case ("findBinary"):
                 if (array2.indexOfBinary(i)>0) System.out.println(" element find");

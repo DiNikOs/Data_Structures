@@ -7,7 +7,6 @@ public class Main {
 
     public static final int SIZE = 1000;
     public static final int SIZE1 = 10;
-    public static final int X = 1000000000;
 
     public static void main(String[] args) {
 
@@ -18,6 +17,7 @@ public class Main {
         arr0.insert(7);
         arr0.insert(8);
         arr0.insert(9);
+
         System.out.println("insert");
         arr0.display();
         System.out.println("\n" + "delete");
@@ -33,6 +33,7 @@ public class Main {
         fillRndSort(array);
         array.display();
         System.out.println();
+
         array2 = array2.copy(array);
         array3 = array3.copy(array);
         array4 = array4.copy(array);
@@ -41,6 +42,7 @@ public class Main {
         testHW2Sort(array2, "sortBubble");
         testHW2Sort(array3, "sortSelect");
         testHW2Sort(array4, "sortInsert");
+
         testHW2Find(array5, "find", 77);
         testHW2Find(array5, "findSort", 77);
         testHW2Find(array5, "findBinary", 77);
