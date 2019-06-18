@@ -9,45 +9,23 @@ import ru.geekbrain.HW.HW3.stack.StackImpl;
 public class MainHW3 {
 
     public static void main(String[] args) {
-        testStack();
-        testQueue();
+        String text = "qwertyuiop";
+        revertText(text);
     }
 
-    private static void testQueue() {
-        Queue<Integer> queue = new QueueImpl<>(5);
-        //Queue<Integer> queue = new PriorityQueue<>(5);
-        System.out.println(queue.insert(3));
-        System.out.println(queue.insert(5));
-        System.out.println(queue.insert(1));
-        System.out.println(queue.insert(2));
-        System.out.println(queue.insert(6));
-        System.out.println(queue.insert(4));
-
-        System.out.println("Queue peek: " + queue.peek());
-        System.out.println("Queue size: " + queue.size());
-        System.out.println("Queue is full: " + queue.isFull());
-
-        while ( !queue.isEmpty() ) {
-            System.out.println(queue.remove());
+    public static String revertText(String text) {
+        StringBuilder bild = new StringBuilder();
+        Stack<Character> stack = new StackImpl<>(text.length());
+        for (int i = 0; i < text.length(); i++) {
+            char currentChar = text.charAt(i);
+            stack.push(currentChar);
         }
-    }
-
-    private static void testStack() {
-        Stack<Integer> stack = new StackImpl<>(5);
-
-        addToStack(stack, 1);
-        addToStack(stack, 2);
-        addToStack(stack, 3);
-        addToStack(stack, 4);
-        addToStack(stack, 5);
-        addToStack(stack, 6);
-
-        System.out.println("Stack size: " + stack.size());
-        System.out.println("Stack top: " + stack.peek());
-
+        System.out.println("original text= " + text);
         while ( !stack.isEmpty() ) {
-            System.out.println(stack.pop());
+            bild.append(stack.pop());
         }
+        System.out.println("inverted text= " + bild);
+        return bild.toString();
     }
 
     public static boolean addToStack(Stack<Integer> stack, int value) {
@@ -57,4 +35,5 @@ public class MainHW3 {
         }
         return false;
     }
+
 }
