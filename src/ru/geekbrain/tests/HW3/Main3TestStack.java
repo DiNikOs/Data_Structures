@@ -7,19 +7,16 @@ import ru.geekbrain.HW.HW3.MainHW3;
 import ru.geekbrain.HW.HW3.stack.Stack;
 import ru.geekbrain.HW.HW3.stack.StackImpl;
 
-import static org.junit.Assert.*;
-
-public class Main3Test {
+public class Main3TestStack {
 
 
     public static int SIZE = 5;
-    Stack<Integer> stack;// = new StackImpl<>(SIZE);
-    MainHW3 main3;// = new MainHW3();
-
+    Stack<Integer> stack;
+    MainHW3 main3;
 
     @Before
     public void Init () {
-        System.out.println("init");//
+        System.out.println("init");
         stack = new StackImpl<>(SIZE);
         main3 = new MainHW3();
     }
