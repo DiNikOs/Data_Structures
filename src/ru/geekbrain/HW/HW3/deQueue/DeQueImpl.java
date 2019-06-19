@@ -24,11 +24,10 @@ public class DeQueImpl<E> implements DeQue<E> {
     }
 
     @Override
-    public boolean insertLeft(E value) {
+    public boolean insertRight(E value) {
         if (isFull()) {
             return false;
         }
-
         if (tail == lastIndex()) {
             tail = DEFAULT_TAIL;
         }
@@ -39,7 +38,7 @@ public class DeQueImpl<E> implements DeQue<E> {
     }
 
     @Override
-    public boolean insertRight(E value) {
+    public boolean insertLeft(E value) {
         if (isFull()) {
             return false;
         }
@@ -48,7 +47,7 @@ public class DeQueImpl<E> implements DeQue<E> {
     }
 
     @Override
-    public E removeRight() {
+    public E removeLeft() {
         if (isEmpty()) {
             return null;
         }
@@ -63,13 +62,17 @@ public class DeQueImpl<E> implements DeQue<E> {
     }
 
     @Override
-    public E removeLeft() {
+    public E removeRight() {
         if (isEmpty()) {
             return null;
         }
-        return data[--size];
+        return data[--tail];
     }
 
+    @Override
+    public E peek() {
+        return data[head];
+    }
 
     @Override
     public int size() {

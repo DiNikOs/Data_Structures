@@ -10,6 +10,8 @@ public interface DeQue<E> {
 
     E removeRight();
 
+    E peek();
+
     int size();
 
     boolean isEmpty();
