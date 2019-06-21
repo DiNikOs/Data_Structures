@@ -42,7 +42,11 @@ public class DeQueImpl<E> implements DeQue<E> {
         if (isFull()) {
             return false;
         }
-        data[size++] = value;
+        if (head - 1 < 0)
+            head = data.length;
+
+        data[--head] = value;
+        size++;
         return true;
     }
 
@@ -66,7 +70,11 @@ public class DeQueImpl<E> implements DeQue<E> {
         if (isEmpty()) {
             return null;
         }
-        return data[--tail];
+        if (tail < 0) {
+            tail = data.length - 1;
+        }
+        size--;
+        return data[tail--];
     }
 
     @Override
