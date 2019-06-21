@@ -1,6 +1,8 @@
 package ru.geekbrain.HW.HW4;
 
-public interface LinkedList<E> {
+import ru.geekbrain.HW.HW4.IteratorHW4.LinkIterator;
+
+public interface LinkedList<E> extends Iterable<E> {
 
     void insertFirst(E value);
 
@@ -17,6 +19,8 @@ public interface LinkedList<E> {
     void display();
 
     E getFirstElement();
+
+    void setFirstElement(E value);
 
     Entry getFirst();
 

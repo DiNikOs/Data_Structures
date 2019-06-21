@@ -1,5 +1,7 @@
 package ru.geekbrain.HW.HW4.IteratorHW4;
 
+import ru.geekbrain.HW.HW4.SimpleLinkedListImpl;
+
 public class LinkIteratorApp {
 
 

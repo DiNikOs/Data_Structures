@@ -1,9 +1,12 @@
 package ru.geekbrain.HW.HW4;
 
+import java.util.Iterator;
+
 public class SimpleLinkedListImpl<E> implements LinkedList<E> {
 
     protected Entry<E> firstElement;//001[005]
     protected int size;
+    private E value;
 
     @Override//O(1)
     public void insertFirst(E value) {
@@ -93,7 +96,117 @@ public class SimpleLinkedListImpl<E> implements LinkedList<E> {
     }
 
     @Override
+    public void setFirstElement(E value) {
+        this.value = value;
+    }
+
+    @Override
     public Entry getFirst() {
         return firstElement;
+    }
+
+//    public LinkedIteratorImpl<E> getIterator() {
+//        return new LinkedIteratorImpl<>(this);
+//    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new LinkedIteratorImpl<E>(this);
+    }
+
+    @SuppressWarnings("unchecked")
+    private class LinkedIteratorImpl<E> implements LinkIterator<E> {
+
+        protected LinkedList.Entry<E> current;//001[005]
+        protected LinkedList.Entry<E> previous;
+        private SimpleLinkedListImpl list;
+        protected int size;
+
+        public LinkedIteratorImpl(SimpleLinkedListImpl list) {
+            this.list = list;
+            this.reset();
+        }
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public void insertAfter(E value) {
+            LinkedList.Entry newItem = new LinkedList.Entry(value);
+            if (list.isEmpty()){
+                list.firstElement = newItem;
+                current = newItem;
+            } else {
+                newItem.next = current.next;
+                current.next = newItem;
+                next();
+            }
+        }
+
+        @Override
+        public void insertBefore(E value) {
+            LinkedList.Entry newItem = new LinkedList.Entry(value);
+            if(previous == null) {
+                newItem.next = list.firstElement;
+                list.firstElement = newItem;
+                reset();
+            }
+            else {
+                newItem.next = previous.next;
+                previous.next = newItem;
+                current = newItem;
+            }
+        }
+
+        @Override
+        public E next() {
+            E nextValue = current.value;
+            previous = current;
+            current = current.next;
+            return nextValue;
+        }
+
+        @Override
+        public void reset() {
+            current = list.firstElement;
+            previous = null;
+        }
+
+        @Override
+        public E deleteCurrent() {
+            return null;
+        }
+
+        @Override
+        public void remove() {
+            if (previous == null){
+                list.firstElement = current.next;
+                reset();
+            } else {
+                previous.next = current.next;
+                if ( !hasNext() ) {
+                    reset();
+                } else {
+                    current = current.next;
+                }
+            }
+        }
+
+        @Override
+        public boolean atEnd() {
+            return false;
+        }
+
+        @Override
+        public E getCurrent() {
+            return null;
+        }
+
+//        @Override
+//        public Iterator<E> iterator() {
+//            return null;
+//        }
     }
 }
