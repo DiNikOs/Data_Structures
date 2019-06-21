@@ -96,7 +96,7 @@ public class SimpleLinkedListImpl<E> implements LinkedList<E> {
     }
 
     @Override
-    public void setFirstElement(E value) {
+    public void setFirst(E value) {
         this.value = value;
     }
 
@@ -176,7 +176,19 @@ public class SimpleLinkedListImpl<E> implements LinkedList<E> {
 
         @Override
         public E deleteCurrent() {
-            return null;
+            E value = current.value;
+            if (previous == null) {
+                list.setFirst(current.next);
+                reset();
+            } else  {
+                previous.next = current.next;
+                if (atEnd()) {
+                    reset();
+                } else {
+                    current = current.next;
+                }
+            }
+            return (E) value;
         }
 
         @Override
@@ -196,12 +208,12 @@ public class SimpleLinkedListImpl<E> implements LinkedList<E> {
 
         @Override
         public boolean atEnd() {
-            return false;
+            return (current.next == null);
         }
 
         @Override
         public E getCurrent() {
-            return null;
+            return (E) current;
         }
 
 //        @Override

@@ -8,22 +8,19 @@ public class LinkIteratorApp {
     public static void main(String[] args) {
 
         LinkedList<Integer> list = new SimpleLinkedListImpl<>();
-        list.insertFirst(4);
-        list.insertFirst(3);
-        list.insertFirst(2);
-        list.insertFirst(1);
-
+        for (int i = 1; i < 6 ; i++) {
+            list.insertFirst(i);
+        }
         displayAll(list);
-
         System.out.println("-----------");
 
         LinkIterator<Integer> iterator = (LinkIterator<Integer>) list.iterator();
-        iterator.reset();//1! 2 3 4
-        iterator.insertAfter(11);//1 11! 2 3 4
-        iterator.next();//1 11 2! 3 4
-        iterator.remove();//1 11 3! 4
-        iterator.insertBefore(0);// 1 11 0! 3 4
-
+        iterator.reset();
+        iterator.insertAfter(11);
+        iterator.next();
+        iterator.deleteCurrent();
+        iterator.remove();
+        iterator.insertBefore(0);
         displayAll(list);
         System.out.println("-----------");
 

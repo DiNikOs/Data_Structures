@@ -20,7 +20,7 @@ public interface LinkedList<E> extends Iterable<E> {
 
     E getFirstElement();
 
-    void setFirstElement(E value);
+    void setFirst(E value);
 
     Entry getFirst();
 
