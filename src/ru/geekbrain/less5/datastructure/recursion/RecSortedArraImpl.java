@@ -1,0 +1,34 @@
+package ru.geekbrain.less5.datastructure.recursion;
+
+import ru.geekbrain.less2.datastructure.array.SortedArrayImpl;
+
+
+public class RecSortedArraImpl<E extends Object & Comparable<? super E>> extends SortedArrayImpl<E> {
+
+    public RecSortedArraImpl(int initialCapacity) {
+        super(initialCapacity);
+    }
+
+    @Override
+    public int indexOf(E value) {
+        return recBinaryFind(value, 0, size - 1);
+    }
+
+    private int recBinaryFind(E value, int low, int high) {
+        if (low > high) {
+            return -1;
+        }
+
+        int mid = (low + high) / 2;
+        if (value.equals(data[mid])) {
+            return mid;
+        }
+
+        if ( value.compareTo(data[mid]) > 0 ) {
+            return recBinaryFind(value, mid + 1, high);
+        }
+        else {
+            return recBinaryFind(value, low, mid - 1);
+        }
+    }
+}
