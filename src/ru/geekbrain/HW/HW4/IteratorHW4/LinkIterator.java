@@ -36,6 +36,7 @@ public class LinkIterator {
             current = newLink;
         } else {
             newLink.next = current.next;
+            current.next = newLink;
             nextLink();
         }
     }

@@ -13,8 +13,11 @@ public class LinkIteratorApp {
 
         itr.insertAfter("Vasiy", 20);
         itr.insertBefore("Petiy", 15);
+        list.display();
         itr.insertBefore("Glasha", 28);
         itr.insertBefore("Masha", 25);
+        list.display();
+        itr.insertAfter("Viki", 22);
         list.display();
         System.out.println("deleteCurrent");
         itr.deleteCurrent();
