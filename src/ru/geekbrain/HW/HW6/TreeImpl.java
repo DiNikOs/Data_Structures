@@ -6,6 +6,32 @@ public class TreeImpl<E extends Comparable<? super E>> implements Tree<E> {
 
     private Node<E> root;
     private int size;
+    private int countDeep = 1;
+
+    @Override
+    public void setCountDeep(E i) {
+        this.countDeep = countDeep;
+    }
+
+    @Override
+    public int deep() {
+        countOrder(root);
+        return countDeep;
+    }
+
+    private void countOrder(Node<E> current) {
+        if (current == null) {
+            return;
+        }
+
+        System.out.println(current);
+
+        countOrder(current.getLeftChild());
+
+        countOrder(current.getRightChild());
+
+
+    }
 
     @Override
     public boolean add(E value) {
@@ -177,9 +203,8 @@ public class TreeImpl<E extends Comparable<? super E>> implements Tree<E> {
         if (current == null) {
             return;
         }
-
-        inOrder(current.getLeftChild());
-        inOrder(current.getRightChild());
+        postOrder(current.getLeftChild());
+        postOrder(current.getRightChild());
         System.out.println(current);
     }
 
@@ -187,17 +212,15 @@ public class TreeImpl<E extends Comparable<? super E>> implements Tree<E> {
         if (current == null) {
             return;
         }
-
         System.out.println(current);
-        inOrder(current.getLeftChild());
-        inOrder(current.getRightChild());
+        preOrder(current.getLeftChild());
+        preOrder(current.getRightChild());
     }
 
     private void inOrder(Node<E> current) {
         if (current == null) {
             return;
         }
-
         inOrder(current.getLeftChild());
         System.out.println(current);
         inOrder(current.getRightChild());
