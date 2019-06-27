@@ -7,6 +7,8 @@ public class Node<T extends Comparable<? super T>> {
     private Node<T> leftChild;
     private Node<T> rightChild;
 
+    private transient int deep;
+
 
     public Node(T value) {
         this.value = value;
@@ -38,6 +40,14 @@ public class Node<T extends Comparable<? super T>> {
 
     public boolean isLeaf() {
         return getLeftChild() == null && getRightChild() == null;
+    }
+
+    public int getDeep() {
+        return deep;
+    }
+
+    public void setDeep (int deep) {
+        this.deep = deep;
     }
 
     @Override

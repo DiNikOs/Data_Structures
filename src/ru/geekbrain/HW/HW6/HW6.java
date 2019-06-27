@@ -5,41 +5,39 @@ import java.util.Random;
 public class HW6 {
 
     public static void main(String[] args) {
-        Tree<Integer> treeTest = new TreeImpl<>();
-        seeTree(treeTest, 5, -20, 20);
-        
+        int deep = 4;
+        int treeCount = 20;
+        int diff = 50;
+        seeTree(deep, diff, treeCount);
+
     }
 
-    public static void seeTree (Tree <Integer> treeTest, int deep, int min, int max) {
+    public static void seeTree(int deep, int diff, int treeCount) {
+        int balancedTreeCount = 0;
+        int nodeCount = (int) (Math.pow(2, deep) - 1);
+        boolean treeView = false;
 
-        int count = 0;
-        for (int i = 0; i < deep; i++) {
-
-            treeTest.add(randomMinMax(min, max));
-
-            count =  treeTest.deep();
-          //  System.out.println("count= " + count);
+        for (int i = 0; i < treeCount; i++) {
+            Tree<Integer> treeTest = new TreeImpl<>(deep);
+            for (int j = 0; j < nodeCount; j++) {
+                treeTest.add(randomMinMax(diff));
+            }
+            if (treeTest.isBalanced()) {
+                balancedTreeCount++;
+                if (!treeView) {
+                    treeView = true;
+                    treeTest.display();
+                }
+            }
+            treeTest.display();
         }
-        treeTest.display();
-        treeTest.traverse(Tree.TraverseMode.IN_ORDER);
-
-        //System.out.println("Deep= " + treeTest.deep());
-
-        System.out.println("---------------------------");
-        treeTest.traverse(Tree.TraverseMode.PRE_ORDER);
-        //System.out.println("Deep= " + treeTest.deep());
-
-        System.out.println("---------------------------");
-        treeTest.traverse(Tree.TraverseMode.POST_ORDER);
-        //System.out.println("Deep= " + treeTest.deep());
-
+        System.out.println("Balanced Tree Count = " + ((balancedTreeCount / (treeCount * 1.0)) * 100) + "%");
     }
 
-    public static int randomMinMax (int min, int max) {
-        int diff = max - min;
-        Random random = new Random();
-        int i = random.nextInt(diff + 1);
-        i += min;
-        return i;
+    private static int randomMinMax(int diff) {
+            Random random = new Random();
+            int i = random.nextInt(diff + 1);
+            return (i -= diff/2);
+        }
     }
-}
+
