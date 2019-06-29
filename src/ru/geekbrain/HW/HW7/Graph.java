@@ -125,26 +125,34 @@ public class Graph {
         resetVertexState();
     }
 
-    public void cfs(String startLabel, String endLabel) {
+    public Stack<String> cfs(String startLabel, String endLabel) {
         int startIndex = indexOf(startLabel);
+        int stopIndex = indexOf(endLabel);
         if (startIndex == -1) {
             throw new IllegalArgumentException("Invalid startLabel: " + startLabel);
+        }
+        if (stopIndex == -1) {
+            throw new IllegalArgumentException("Invalid endLabel: " + endLabel);
         }
 
         Queue<Vertex> queue = new LinkedList<>();
         Vertex vertex = vertexList.get(startIndex);
         visitVertex(queue, vertex);
-
         while ( !queue.isEmpty() ) {
             vertex = getNearUnvisitedVertex(queue.peek());
             if (vertex != null) {
                 visitVertex(queue, vertex);
+                vertex.setPreviousVertex(queue.peek());
+                if (vertex.getLabel().equals(endLabel)) {
+                    return buildPath(vertex);
+                }
             }
             else {
                 queue.remove();
             }
         }
         resetVertexState();
+        return null;
     }
 
     private void resetVertexState() {
@@ -160,7 +168,6 @@ public class Graph {
                 return vertexList.get(i);
             }
         }
-
         return null;
     }
 
@@ -174,6 +181,16 @@ public class Graph {
         displayVertex(vertex);
         queue.add(vertex);
         vertex.setVisited(true);
+    }
+
+    private Stack<String> buildPath(Vertex vertex) {
+        Stack<String> stack = new Stack<>();
+        Vertex current = vertex;
+        while (current != null) {
+            stack.push(current.getLabel());
+            current = current.getPreviousVertex();
+        }
+        return stack;
     }
 
 }
