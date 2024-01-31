@@ -8,7 +8,7 @@ public class SortedArrayMethods <E extends Object & Comparable<? super E>> exten
     }
 
     @Override//O(logN)
-    public int indexOfBinaty(E value) {
+    public int indexOfBinary(E value) {
         int low = 0;
         int high = size - 1;
         while (low <= high) {
